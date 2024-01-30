@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="Scripts/jquery-3.7.1.slim.min.js"></script>
+<script src="data/gear.js"></script>
+
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>TWoW Gear Planner V0.0.1</title>
+</head>
+<body style="background-color: steelblue">
+    <div class="container text-center" style="background-color: var(--bs-info-bg-subtle);">
+        <div class="row">
+            <div class="col-sm-8"><h3>Equipment</h3></div>
+            <div class="col-sm-4"><h3>Stats</h3></div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <h5>Head</h5>
+                <select id="gear_head" class="form-select"></select>
+                <br />
+                <h5>Neck</h5>
+                <select id="gear_neck" class="form-select"></select>
+                <br />
+                <h5>Shoulders</h5>
+                <select id="gear_shoulders" class="form-select"></select>
+                <br />
+                <h5>Back</h5>
+                <select id="gear_back" class="form-select"></select>
+                <br />
+                <h5>Chest</h5>
+                <select id="gear_chest" class="form-select"></select>
+                <br />
+                <h5>Wrist</h5>
+                <select id="gear_wrist" class="form-select"></select>
+                <br />
+                <h5>Hands</h5>
+                <select id="gear_hands" class="form-select"></select>
+            </div>
+            <div class="col-sm">
+                <h5>Waist</h5>
+                <select id="gear_waist" class="form-select"></select>
+                <br />
+                <h5>Legs</h5>
+                <select id="gear_legs" class="form-select"></select>
+                <br />
+                <h5>Feet</h5>
+                <select id="gear_feet" class="form-select"></select>
+                <br />
+                <h5>Ring 1</h5>
+                <select id="gear_ring1" class="form-select"></select>
+                <br />
+                <h5>Ring 2</h5>
+                <select id="gear_ring2" class="form-select"></select>
+                <br />
+                <h5>Trinket 1</h5>
+                <select id="gear_trinket1" class="form-select"></select>
+                <br />
+                <h5>Trinket 2</h5>
+                <select id="gear_trinket2" class="form-select"></select>
+            </div>
+            <div class="col-sm">Stats</div>
+        </div>
+    </div>
+    <span id="testing_span" />
+</body>
+</html>
+<footer>
+    <div class="container text-center">
+        <p>Author: Benhardt [Stormwind Opportunity Lg] - Turtle WoW Nordanaar</p>    
+    </div>
+    
+</footer>
+<script type="text/javascript">
+    /*ToDo:
+     * Make script to convert CSV data into gear.js format.
+     * Setup basic stat calcs.
+     * Setup Class selection
+     * Add Weapons slots
+     * Add Enchants
+     * 
+    */
+
+    $(document).ready()
+    {
+
+        let headSelect = document.getElementById('gear_head');
+        for (var item in gear.head) {
+            let opt = document.createElement("option");
+            opt.value = gear.head[item].id; // the index
+            opt.innerHTML = gear.head[item].name;
+            headSelect.append(opt);
+        }
+
+        let neckSelect = document.getElementById('gear_neck');
+        for (var neck in gear.neck) {
+            //log name
+            console.log(neck.name);
+
+            let opt2 = document.createElement("option");
+            opt2.value = gear.neck[neck].id; // the index
+            opt2.innerHTML = gear.neck[neck].name;
+            neckSelect.append(opt2);
+        }
+
+    }
+
+</script>

@@ -1,0 +1,21 @@
+ID,Name,Unique,Armor_Slot,Armor_Type,Armor_Value,Agility,Strength,Intellect,Spirit,Stamina,Arcane_Res,Fire_Res,Nature_Res,Frost_Res,Shadow_Res,Classes,Spell_Power,Arcane_Power,Fire_Power,Nature_Power,Frost_Power,Shadow_Power,Holy_Power,Spell_Hit,Spell_Crit,Spell_Pen,Healing_Power,Meditation,MP5,HP5,Armor_Pen,Attack_Power,Ranged_Attack_Power,Feral_Attack_Power,Melee_Hit,Melee_Crit,Haste,Defense,Dodge,Block,Parry,Block_Value,Reduced_Crit,Item_Set,Set_Bonus_2,Set_Bonus_3,Set_Bonus_4,Set_Bonus_5,Set_Bonus_6,Set_Bonus_7,Set_Bonus_8,Weapon_Type,Weapon_Slot,Bottom_End,Top_End,Speed,Unique_Effect
+16955,Judgement Crown,,Head,Plate,696,12,17,23,,18,,,,,10,Paladin,32,,,,,,,,,,,,,,,,,,,,,,,,,,,udgement Armor,,Set: Increases the radius of a Paladin's auras by 10.,,Set: Increases damage and healing done by magical spells and effects by up to 47.,,,Set: Increases damage and healing done by magical spells and effects by up to 47.,,,,,,
+16965,Sabatons of Wrath,,Feet,Plate,589,,13,,,30,,10,,,,Warrior,,,,,,,,,,,,,,,,,,,,,,7,,,,14,,Battlegear of Wrath,,Set: Increases the attack power granted by Battle Shout by 30.,,Set: 20% chance after using an offensive ability requiring rage that your next offensive ability requires 50 less rage to use.,,,Set: 4% chance to parry the next attack after a block.,,,,,,
+17078,Sapphiron Drape,,Back,Cloth,55,,,17,,10,6,,,6,,,14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+18406,Onyxia Blood Talisman,,Trinket,,,,,,,,,15,,,,,,,,,,,,,,,,,,7,,,,,,,,7,,,2,,,,,,,,,,,,,,,,
+19358,Draconic Maul,,,,,,27,,,19,,,,,,,,,,,,,,,,,,,,,,,,140,,2,,,,,,,,,,,,,,,,,,,,,
+19361,"Ashjre'thul, Crossbow of Smiting",,,,,,,,,7,,,,,,,,,,,,,,,,,,,,,,,36,,,,,,,,,,,,,,,,,,,Crossbow,Ranged,124,186,3.4,
+19387,Chromatic Boots,,Feet,Plate,596,20,20,,,19,,,,,,,,,,,,,,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,,
+19434,Band of Dark Dominion,1,Finger,,,,,6,,12,,,,,,,,,,,,33,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+19438,Ringo's Blizzard Boots,,Feet,Cloth,75,,,12,,11,,,,,,,,,,,40,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+19912,Overlord's Onyx Band,1,Finger,,,,,,,11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,2,,,,Overlord's Resolution,Set: Increases your chance to dodge an attack by 1%.,,,,,,,,,,,,
+22416,Dreadnaught Breastplate,,Chest,Plate,1027,,21,,,43,,,,,,Warrior,,,,,,,,,,,,,,,,,,,2,13,1,,,,,,,Dreadnaught's Battlegear,Set: Increases the damage done by your Revenge ability by 75.,,Set: Improves your chance to hit with Taunt and Challenging Shout by 5%.,,"Set: Improves your chance to hit with Sunder Armor, Heroic Strike, Revenge, and Shield Slam by 5%.",,"Set: When your health drops below 20%, for the next 5 seconds healing spells cast on you help you to Cheat Death, increasing healing done by up to 160.",,,,,,
+22496,Frostfire Robe,,Chest,Cloth,138,,,27,,21,,,,,,Mage,47,,,,,,,1,1,13,,,,,,,,,,,,,,,,,,Frostfire Regalia,Set: Reduces cooldown on your Evocation by 60000 minute.,,Set: Gives your Mage Armor a chance when struck by a harmful spell to increase resistance against that school of magic by 35 for 30 sec.,,Set: Your damage spells have a chance to cause your target to take up to 200 increased damage from subsequent spells.,,"Set: Your damage spells have a chance to displace you, causing the next spell cast to generate no threat.",,,,,,
+23237,Ring of the Eternal Flame,1,Finger,,,,,10,,,,,,,,,,,29,,,,,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+61208,Staff of the Dreamer,,,,,,,25,32,,,,15,,,,,,,,,,,,,,121,5,5,,,,,,,,1,,,,,,,,,,,,,,,Two-Hand,Staff,128,218,3,
+61275,Breastplate of Earthen Might,,Chest,Mail,458,,,,,10,,,,,,,,,,,,,,,,,,,,,50,44,,,,2,,,,,,,,,,,,,,,,,,,,,
+61523,Crystal Sword of the Blossom,1,,,,,,,,11,,,7,,,,,,,,,,,,,,,,,,,20,,,1,,,,,,,,,,,,,,,,,,,,,,Equip: Increased Swords +3.
+61524,Naturecaller's Tunic,1,Chest,Leather,237,,,21,25,20,,,,,,,,30,,30,,,,1,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+61526,Jadestone Protector,,Off Hand,Shield,3035,,,13,,14,,,,,,,,,,,,,,,,,,,,,,,,,,,,8,,,,18,1,,,,,,,,,,,,,,
+81018,Crimson Spellblade,,,,,,,,,10,,,,,,,11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Main Hand,Sword,53,99,1.9,Equip: Adds 2 fire damage to your melee attacks.
+83483,Crown of Divine Justice,,Head,Plate,670,,20,16,,25,,,,,,,,,,,,,29,1,,,,,,,,,,,,1,,,,,,,,,,,,,,,,,,,,,
