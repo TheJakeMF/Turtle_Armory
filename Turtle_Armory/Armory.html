@@ -3,18 +3,43 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script src="Scripts/jquery-3.7.1.slim.min.js"></script>
 <script src="data/gear.js"></script>
-
+<script src="data/baseStats.js"></script>
 
 <html>
 <head>
     <meta charset="utf-8" />
     <title>TWoW Gear Planner V0.0.1</title>
 </head>
-<body style="background-color: steelblue">
-    <div class="container text-center" style="background-color: var(--bs-info-bg-subtle);">
+<body style="background-color: var(--bs-primary-bg-subtle);">
+    <div class="container text-center" style="background-color: var(--bs-primary-border-subtle); border: 15px var(--bs-dark) solid ">
         <div class="row">
-            <div class="col-sm-8"><h3>Equipment</h3></div>
-            <div class="col-sm-4"><h3>Stats</h3></div>
+            <div class="col-sm-8">
+                <h5>Class</h5>
+                <select id="player_class" class="form-select">
+                    <option value="warrior">Warrior</option>
+                    <option value="paladin">Paladin</option>
+                    <option value="rogue">Rogue</option>
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <h5>Race</h5>
+                <select id="player_race" class="form-select">
+                    <option value="dwarf">Dwarf</option>
+                    <option value="gnome">Gnome</option>
+                    <option value="human">Human</option>
+                </select>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <h3>Equipment</h3>
+                <span id="span_test" />
+            </div>
+            <div class="col-sm-4">
+                <h3>Stats</h3>
+
+            </div>
         </div>
         <div class="row">
             <div class="col-sm">
@@ -25,7 +50,7 @@
                 <select id="gear_neck" class="form-select"></select>
                 <br />
                 <h5>Shoulders</h5>
-                <select id="gear_shoulders" class="form-select"></select>
+                <select id="gear_shoulder" class="form-select"></select>
                 <br />
                 <h5>Back</h5>
                 <select id="gear_back" class="form-select"></select>
@@ -37,14 +62,20 @@
                 <select id="gear_wrist" class="form-select"></select>
                 <br />
                 <h5>Hands</h5>
-                <select id="gear_hands" class="form-select"></select>
+                <select id="gear_hand" class="form-select"></select>
+                <br />
+                <h5>Main Hand</h5>
+                <select id="gear_mainhand" class="form-select"></select>
+                <br />
+                <h5 id="ranged_name">Ranged/Relic</h5>
+                <select id="gear_ranged" class="form-select"></select>
             </div>
             <div class="col-sm">
                 <h5>Waist</h5>
                 <select id="gear_waist" class="form-select"></select>
                 <br />
                 <h5>Legs</h5>
-                <select id="gear_legs" class="form-select"></select>
+                <select id="gear_leg" class="form-select"></select>
                 <br />
                 <h5>Feet</h5>
                 <select id="gear_feet" class="form-select"></select>
@@ -60,51 +91,528 @@
                 <br />
                 <h5>Trinket 2</h5>
                 <select id="gear_trinket2" class="form-select"></select>
+                <br />
+                <h5>Off Hand</h5>
+                <select id="gear_offhand" class="form-select"></select>
+                <br />
+                <br />
+                <button onclick="updateStats()" class="btn btn-primary">Update Stats</button>
             </div>
-            <div class="col-sm">Stats</div>
+            <div class="col-sm">
+                <div class="container text-center">
+                    <div class="p-3 rounded-2" style="background-color: var(--bs-dark-bg-subtle ); border: 10px var(--bs-secondary-color ) solid ">
+
+                        <div class="row">
+                            <h3>General</h3>
+                            <div class="col">
+                                <table class="table table-light table-striped table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Health</th>
+                                            <td><span id="health_span">300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Mana</th>
+                                            <td><span id="mana_span">300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">HP5</th>
+                                            <td><span id="hp5_span">300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">MP5</th>
+                                            <td><span id="mp5_span">300</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h3>Attributes</h3>
+                                <table class="table table-light table-striped table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Agility</th>
+                                            <td><span id="agility_span" /></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Strength</th>
+                                            <td><span id="strength_span">300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Intellect</th>
+                                            <td><span id="intellect_span">300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Spirit</th>
+                                            <td><span id="spirit_span">300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Stamina</th>
+                                            <td><span id="stamina_span">300</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col">
+                                <h3>Resistances</h3>
+                                <table class="table table-light table-striped table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Arcane</th>
+                                            <td><span id="arcane_res_span">300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Fire</th>
+                                            <td><span id="fire_res_span">300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Nature</th>
+                                            <td><span id="nature_res_span">300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Frost</th>
+                                            <td><span id="Frost_Res">300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Shadow</th>
+                                            <td><span id="shadow_res_span">300</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h5>Spell</h5>
+                                <table class="table table-light table-striped table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Spellpower</th>
+                                            <td><span id="spell_power_span">300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Spell Hit</th>
+                                            <td><span id="spell_hit_span">300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Spell Crit</th>
+                                            <td><span id="spell_crit_span">300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Spell Pen</th>
+                                            <td><span id="spell_pen_span">300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Healing</th>
+                                            <td><span id="healing_power_span">300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Meditation</th>
+                                            <td><span id="meditation_span">300</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col">
+                                <h5>Spell School</h5>
+                                <table class="table table-light table-striped table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Arcane</th>
+                                            <td><span id="arcane_power_span">300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Fire</th>
+                                            <td><span id="fire_power_span">300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Nature</th>
+                                            <td><span id="nature_power_span">300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Frost</th>
+                                            <td><span id="frost_power_span">300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Shadow</th>
+                                            <td><span id="shadow_power_span">300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Holy</th>
+                                            <td><span id="holy_power_span">300</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h5>Melee</h5>
+                                <table class="table table-light table-striped table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">AP</th>
+                                            <td><span id="attack_power_span">300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Ranged AP</th>
+                                            <td><span id="ranged_attack_power_span">300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Feral AP</th>
+                                            <td><span id="feral_attack_power_span">300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Melee Hit</th>
+                                            <td><span id="melee_hit_span">300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Melee Crit</th>
+                                            <td><span id="melee_crit_span">300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Haste</th>
+                                            <td><span id="haste_span">300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Armor Pen</th>
+                                            <td><span id="armor_pen_span">300</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col">
+                                <h5>Defense</h5>
+                                <table class="table table-light table-striped table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Defense</th>
+                                            <td><span id="defense_span">300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Miss</th>
+                                            <td><span id="miss_span">300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Dodge</th>
+                                            <td><span id="dodge_span">300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Block</th>
+                                            <td><span id="block_span">300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Parry</th>
+                                            <td><span id="parry_span">300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Block Value</th>
+                                            <td><span id="block_value_span">300</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Anti Crit</th>
+                                            <td><span id="reduced_crit_span">300</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <span id="testing_span" />
 </body>
 </html>
+
 <footer>
     <div class="container text-center">
-        <p>Author: Benhardt [Stormwind Opportunity Lg] - Turtle WoW Nordanaar</p>    
+        <div class="row">
+            <p>Author: Benhardt [Stormwind Opportunity Lg] - Turtle WoW Nordanaar</p>
+        </div>
+        <div class="row">
+            <a href="https://github.com/TheJakeMF/Turtle_Armory">GitHub</a>
+        </div>
     </div>
-    
+
 </footer>
 <script type="text/javascript">
+
+    var playerStats;
     /*ToDo:
      * Make script to convert CSV data into gear.js format.
      * Setup basic stat calcs.
      * Setup Class selection
      * Add Weapons slots
      * Add Enchants
-     * 
+     * Add specs
+     *
     */
 
     $(document).ready()
     {
+        setupDropdowns();
+    }
 
-        let headSelect = document.getElementById('gear_head');
+    //Just update stats for now, if anything else needs done for class/race only do it here.
+    function updateClassRace()
+    {
+        updateStats();
+    }
+
+    //Gathers gear list from dropdowns, calculates stats and updates the screen.
+    function updateStats() {
+
+        console.log("Starting updateStats().");
+
+        //Load Class/Race
+        let playerClass = $('#player_class').val();
+        let playerRace = $('#player_race').val();
+        var playerStats;
+        console.log("playerRace: " + playerClass);
+        console.log("player_class: " + playerRace);
+
+        if (playerClass.toLowerCase() == "warrior") {
+            if (playerRace.toLowerCase() == "dwarf") playerStats = baseStats.warrior_dwarf;
+            if (playerRace.toLowerCase() == "gnome") playerStats = baseStats.warrior_gnome;
+        }
+
+        console.log("Done getting Class/Race.");
+
+        //Load Selected Items
+        var head = gear.head[$('#gear_head').val()];
+        var neck = gear.neck[$('#gear_neck').val()];
+        var shoulders = gear.shoulder[$('#gear_shoulder').val()];
+        var back = gear.back[$('#gear_neck').val()];
+        var chest = gear.chest[$('#gear_chest').val()];
+        var wrist = gear.wrist[$('#gear_wrist').val()];
+        var hands = gear.hands[$('#gear_hand').val()];
+        var waist = gear.waist[$('#gear_waist').val()];
+        var legs = gear.legs[$('#gear_leg').val()];
+        var feet = gear.feet[$('#gear_feet').val()];
+        var ringOne = gear.rings[$('#gear_ring1').val()];
+        var ringTwo = gear.rings[$('#gear_ring2').val()];
+        var trinketOne = gear.trinkets[$('#gear_trinket2').val()];
+        var trinketTwo = gear.trinkets[$('#gear_trinket2').val()];
+        var mainHand = gear.rings[$('#gear_mainhand').val()];
+        var offHand = gear.trinkets[$('#gear_offhand').val()];
+        var ranged = gear.trinkets[$('#gear_ranged').val()];
+
+        console.log("Done gathering gear.");
+
+        console.log("Name: " + head.name);
+        console.log("Name: " + neck.name);
+        console.log("Name: " + shoulders.name);
+        console.log("Name: " + back.name);
+        console.log("Name: " + chest.name);
+        console.log("Name: " + wrist.name);
+        console.log("Name: " + waist.name);
+        console.log("Name: " + legs.name);
+        console.log("Name: " + feet.name);
+        console.log("Name: " + ringOne.name);
+        console.log("Name: " + ringTwo.name);
+        console.log("Name: " + trinketOne.name);
+        console.log("Name: " + trinketTwo.name);
+        
+        //Calculate Stats.
+
+        var [Agi, Str, Int, Spi, Sta] = [0, 0, 0, 0, 0];
+
+        var [baseAgi, baseStr, baseInt, baseSpi, baseSta] = [100, 100, 100, 100, 100];
+        
+        if (head.agi) Agi += head.agi;
+        if (neck.agi) Agi += neck.agi;
+        if (back.agi) Agi += back.agi;
+        if (chest.agi) Agi += chest.agi;
+        if (wrist.agi) Agi += wrist.agi;
+        if (hands.agi) Agi += hands.agi;
+        if (shoulders.agi) Agi += shoulders.agi;
+        if (legs.agi) Agi += legs.agi;
+        if (feet.agi) Agi += feet.agi;
+        if (ringOne.agi) Agi += ringOne.agi;
+        if (ringTwo.agi) Agi += ringTwo.agi;
+        if (trinketOne.agi) Agi += trinketOne.agi;
+        if (trinketTwo.agi) Agi += trinketTwo.agi;
+        if (shoulders.agi) Agi += shoulders.agi;
+        if (mainHand.agi) Agi += mainHand.agi;
+        if (offHand.agi) Agi += offHand.agi;
+        if (ranged.agi) Agi += ranged.agi;
+
+        console.log(playerStats.agi);
+
+        Agi += playerStats.agi;
+
+        $("#agility_span").html(Agi.toString());
+
+    }
+
+    //Run updateStats() whenever a gear dropdown is changed.
+    $("select[id^='gear_']").change(function () {
+        updateStats();
+    });
+
+    //Run updateClassRace() whenever a gear dropdown is changed.
+    $("select[id^='player_']").change(function () {
+        updateClassRace();
+    });
+
+    function setupDropdowns() {
+        //Setup Head Dropdown
+        let headSelect = $("#gear_head");
         for (var item in gear.head) {
             let opt = document.createElement("option");
-            opt.value = gear.head[item].id; // the index
+            opt.value = item; // the index
             opt.innerHTML = gear.head[item].name;
             headSelect.append(opt);
         }
+        //Setup Neck Dropdown
+        let neckSelect = $('#gear_neck');
+        for (var item in gear.neck) {
 
-        let neckSelect = document.getElementById('gear_neck');
-        for (var neck in gear.neck) {
-            //log name
-            console.log(neck.name);
-
-            let opt2 = document.createElement("option");
-            opt2.value = gear.neck[neck].id; // the index
-            opt2.innerHTML = gear.neck[neck].name;
-            neckSelect.append(opt2);
+            let opt = document.createElement("option");
+            opt.value = item; // the index
+            opt.innerHTML = gear.neck[item].name;
+            neckSelect.append(opt);
         }
+        //Setup Shoulders Dropdown
+        let shouldersSelect = $('#gear_shoulder');
+        for (var item in gear.shoulder) {
 
+            let opt = document.createElement("option");
+            opt.value = item; // the index
+            opt.innerHTML = gear.shoulder[item].name;
+            shouldersSelect.append(opt);
+        }
+        //Setup Back Dropdown
+        let backSelect = $('#gear_back');
+        for (var item in gear.back) {
+
+            let opt = document.createElement("option");
+            opt.value = item; // the index
+            opt.innerHTML = gear.back[item].name;
+            backSelect.append(opt);
+        }
+        //Setup Chest Dropdown
+        let chestSelect = $('#gear_chest');
+        for (var item in gear.chest) {
+
+            let opt = document.createElement("option");
+            opt.value = item; // the index
+            opt.innerHTML = gear.chest[item].name;
+            chestSelect.append(opt);
+        }
+        //Setup Wrist Dropdown
+        let wristSelect = $('#gear_wrist');
+        for (var item in gear.wrist) {
+
+            let opt = document.createElement("option");
+            opt.value = item; // the index
+            opt.innerHTML = gear.wrist[item].name;
+            wristSelect.append(opt);
+        }
+        //Setup Hands Dropdown
+        let handsSelect = $('#gear_hand');
+        for (var item in gear.hands) {
+
+            let opt = document.createElement("option");
+            opt.value = item; // the index
+            opt.innerHTML = gear.hands[item].name;
+            handsSelect.append(opt);
+        }
+        //Setup Waist Dropdown
+        let waistSelect = $('#gear_waist');
+        for (var item in gear.waist) {
+
+            let opt = document.createElement("option");
+            opt.value = item; // the index
+            opt.innerHTML = gear.waist[item].name;
+            waistSelect.append(opt);
+        }
+        //Setup Legs Dropdown
+        let legsSelect = $('#gear_leg');
+        for (var item in gear.legs) {
+
+            let opt = document.createElement("option");
+            opt.value = item; // the index
+            opt.innerHTML = gear.legs[item].name;
+            legsSelect.append(opt);
+        }
+        //Setup Feet Dropdown
+        let feetSelect = $('#gear_feet');
+        for (var item in gear.feet) {
+
+            let opt = document.createElement("option");
+            opt.value = item; // the index
+            opt.innerHTML = gear.feet[item].name;
+            feetSelect.append(opt);
+        }
+        //Setup Ring1 Dropdown
+        let ringOneSelect = $('#gear_ring1');
+        for (var item in gear.rings) {
+
+            let opt = document.createElement("option");
+            opt.value = item; // the index
+            opt.innerHTML = gear.rings[item].name;
+            ringOneSelect.append(opt);
+        }
+        //Setup Ring2 Dropdown
+        let ringTwoSelect = $('#gear_ring2');
+        for (var item in gear.rings) {
+
+            let opt = document.createElement("option");
+            opt.value = item; // the index
+            opt.innerHTML = gear.rings[item].name;
+            ringTwoSelect.append(opt);
+        }
+        //Setup Trinket1 Dropdown
+        let trinketOneSelect = $('#gear_trinket1');
+        for (var item in gear.trinkets) {
+
+            let opt = document.createElement("option");
+            opt.value = item; // the index
+            opt.innerHTML = gear.trinkets[item].name;
+            trinketOneSelect.append(opt);
+        }
+        //Setup Trinket2 Dropdown
+        let trinketTwoSelect = $('#gear_trinket2');
+        for (var item in gear.trinkets) {
+
+            let opt = document.createElement("option");
+            opt.value = item; // the index
+            opt.innerHTML = gear.trinkets[item].name;
+            trinketTwoSelect.append(opt);
+        }
+        //Setup Mainhand Dropdown
+        let mainhandSelect = $('#gear_mainhand');
+        for (var item in gear.mainhand) {
+
+            let opt = document.createElement("option");
+            opt.value = item; // the index
+            opt.innerHTML = gear.mainhand[item].name;
+            mainhandSelect.append(opt);
+        }
+        //Setup Offhand Dropdown
+        let offhandSelect = $('#gear_offhand');
+        for (var item in gear.offhand) {
+
+            let opt = document.createElement("option");
+            opt.value = item; // the index
+            opt.innerHTML = gear.offhand[item].name;
+            offhandSelect.append(opt);
+        }
+        //Setup Ranged Dropdown
+        let rangedSelect = $('#gear_ranged');
+        for (var item in gear.ranged) {
+
+            let opt = document.createElement("option");
+            opt.value = item; // the index
+            opt.innerHTML = gear.ranged[item].name;
+            rangedSelect.append(opt);
+        }
     }
 
 </script>
